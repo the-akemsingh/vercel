@@ -9,11 +9,11 @@ const redisClient: RedisClientType = createClient({
 await redisClient.connect();
 
 
-async function pushToQueue(channel:string,payload:string){
-    try{
-        await redisClient.lPush(channel,payload);
-    }catch(e){
-        console.log("Error pushing projectId to queue",e)
+async function pushToQueue(channel: string, payload: string) {
+    try {
+        await redisClient.lPush(channel, payload);
+    } catch (e) {
+        console.log("Error pushing projectId to queue", e)
     }
 }
 

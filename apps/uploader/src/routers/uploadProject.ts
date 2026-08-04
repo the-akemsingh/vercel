@@ -1,9 +1,8 @@
 import { Router } from "express";
 import simpleGit from 'simple-git'
 import path from 'path';
-import uploadToS3 from "../utils/S3";
-import { readdirSync } from 'fs'
-import { rmSync, statSync } from "node:fs";
+import UploadToS3 from "../utils/uploadToS3";
+import { rmSync, statSync, readdirSync } from "node:fs";
 import pushToQueue from "../utils/redis";
 
 
@@ -37,17 +36,17 @@ uploadeRouter.post("/upload", async (req, res) => {
         await Promise.all(
             allFiles.map(async (file) => {
                 const filePath = path.join(projectDir, file as string);
-                const objectKey = path
+                const fileKey = path
                     .relative(basePath, filePath)
                     .replace(/\\/g, "/");
 
-                await uploadToS3(filePath, objectKey);
+                await UploadToS3(filePath, `input/${fileKey}`);
             })
         );
 
         rmSync(projectDir, { recursive: true, force: true });
 
-        await pushToQueue("PROJECTS", projectId.toString());
+        await pushToQueue("PROJECT_IDS", projectId.toString());
         res.status(200).json({
             projectId
         })
