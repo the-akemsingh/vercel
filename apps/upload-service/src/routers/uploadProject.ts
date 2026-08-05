@@ -1,7 +1,7 @@
 import { Router } from "express";
 import simpleGit from 'simple-git'
 import path from 'path';
-import UploadToS3 from "../utils/uploadToS3";
+import UploadToS3 from "../utils/UploadToS3";
 import { rmSync, statSync, readdirSync } from "node:fs";
 import pushToQueue from "../utils/redis";
 
@@ -18,6 +18,7 @@ uploadeRouter.post("/upload", async (req, res) => {
             return;
         }
 
+        //TODO: make it only consists of alphabets
         const projectId = Math.floor(10000 + Math.random() * 90000)
         const basePath = path.join(__dirname, "..", "..", "/projects")
         const projectDir = path.join(basePath, `/${projectId}`)

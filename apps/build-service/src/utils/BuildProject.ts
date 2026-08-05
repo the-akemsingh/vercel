@@ -12,11 +12,10 @@ async function BuildProject(projectId: string, basePathForDownloads: string) {
         childProcess.stderr?.on('data', function (data) {
             console.log('stderr: ' + data);
         });
-        
+
         childProcess.on("close", () => {
             resolve("")
         })
-
     })
 }
 export default BuildProject;

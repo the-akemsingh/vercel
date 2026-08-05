@@ -22,13 +22,16 @@ while (1) {
 
     const projectId = payload.element
     const basePathForDownloads = path.join(__dirname, "..", "/projects")
+
     console.log("Downloading project")
     await DownloadProject(projectId, basePathForDownloads)
+
     console.log("Building project")
     await BuildProject(projectId, basePathForDownloads);
+
     console.log("Uploading project")
     await UploadProjectBuildToS3(projectId, basePathForDownloads);
+
     console.log("Deleting project")
     rmSync(path.join(basePathForDownloads, projectId), { recursive: true, force: true });
-
 }
