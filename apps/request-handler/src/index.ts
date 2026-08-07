@@ -15,16 +15,16 @@ app.get("/{*splat}", async (req, res) => {
         const filePath = req.path === "/" ? "index.html" : req.path.slice(1);
         console.log("file name - ", filePath);
 
-        const projectId = host.split(".")[0];
+        const projectDeploymentId = host.split(".")[0];
 
-        if (!projectId) {
+        if (!projectDeploymentId) {
             res.status(400).json({
                 message: "Missing required argument",
             });
             return;
         }
 
-        const file = await GetFileFromS3(projectId, filePath);
+        const file = await GetFileFromS3(projectDeploymentId, filePath);
 
         if (!file?.Body) {
             res.sendStatus(404);
@@ -43,6 +43,6 @@ app.get("/{*splat}", async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || 3005, () => {
+app.listen(process.env.REQUEST_HANDLER_PORT || 3005, () => {
     console.log(`uploader server listening on port ${process.env.PORT || 3005}`);
 });

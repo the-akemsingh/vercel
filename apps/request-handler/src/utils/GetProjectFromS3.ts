@@ -3,9 +3,9 @@ import {
 } from "@aws-sdk/client-s3";
 import { s3Client } from "./S3";
 
-export async function GetFileFromS3(projectId: string, fileName: string) {
+export async function GetFileFromS3(projectDeploymentId: string, fileName: string) {
     try {
-        const key = `output/${projectId}/dist/${fileName}`
+        const key = `output/${projectDeploymentId}/dist/${fileName}`
         console.log("file key - ", key)
         const getFileCommand = new GetObjectCommand({
             Bucket: "vercel",
