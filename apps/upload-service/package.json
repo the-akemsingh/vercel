@@ -15,9 +15,12 @@
     "@aws-sdk/client-s3": "^3.1102.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "google-auth-library": "^11.0.0",
+    "jsonwebtoken": "^9.0.3",
     "redis": "^6.2.0",
     "simple-git": "^3.36.0"
   }
