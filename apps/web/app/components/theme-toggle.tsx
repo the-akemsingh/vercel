@@ -33,13 +33,13 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="theme-toggle"
+      className="theme-btn"
       onClick={toggleTheme}
       aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
       title={`Switch to ${isDark ? "light" : "dark"} theme`}
     >
       {isDark ? <SunIcon /> : <MoonIcon />}
-      <span>{isDark ? "Light" : "Dark"}</span>
+      {/* <span>{isDark ? "Light" : "Dark"}</span> */}
     </button>
   );
 }
