@@ -2,10 +2,10 @@ import path from "path";
 import { statSync, readdirSync } from "node:fs";
 import { UploadToS3 } from "./UploadToS3";
 
-async function UploadProjectBuildToS3(projectId: string, basePathForDownloads: string) {
+async function UploadProjectBuildToS3(projectDeploymentId: string, basePathForDownloads: string) {
     try {
 
-        const projectBuildPath = path.join(basePathForDownloads, projectId, "/dist")
+        const projectBuildPath = path.join(basePathForDownloads, projectDeploymentId, "/dist")
         const allItems = readdirSync(projectBuildPath, { recursive: true })
 
         const allFiles = allItems.filter((item) => {

@@ -8,11 +8,11 @@ import { pipeline } from "node:stream/promises";
 import { s3Client } from "./S3";
 
 
-export async function DownloadProject(projectId: string, basePath: string) {
+export async function DownloadProject(projectDeploymentId: string, basePath: string) {
     try {
         const getItemsCommand = new ListObjectsV2Command({
             Bucket: "vercel",
-            Prefix: `input/${projectId}`
+            Prefix: `input/${projectDeploymentId}`
         })
         const projectItems = await s3Client.send(getItemsCommand)
 
