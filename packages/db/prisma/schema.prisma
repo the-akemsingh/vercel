@@ -23,7 +23,7 @@ model User {
 model Project {
   id                  String        @id @default(uuid())
   githubUrl           String
-  projectDeploymentId Int           @unique
+  projectDeploymentId String           @unique
   userId              String
   user                User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   status              ProjectStatus @default(PENDING)
@@ -34,7 +34,7 @@ enum ProjectStatus {
   SAVED_TO_S3
   BUILDING
   BUILD_COMPLETE
-  UPLOADING_BUILD
+  DEPLOYING_BUILD
   DEPLOYED
   FAILED
 }
